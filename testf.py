@@ -8,7 +8,7 @@ y = []
 A = [5, 2, 1/2, 1]
 F = [1, 2, 4, 10]
 
-for a,f in zip(A,F):
+for a, f in zip(A, F):
     y.append(a*np.sin(2*pi*f*X))
 
 
@@ -22,7 +22,6 @@ for i, _y in enumerate(y):
     axs[i].plot(X, _y)
 
 fig.show()
-
 
 
 fig: plt.Figure
