@@ -75,6 +75,13 @@ def shuffle(tab: iter) -> np.ndarray:
     return tab[indices]
 
 
+def generate_signal(x: np.ndarray, amps: list, freqs: list):
+    signals: list = []
+    for amp, freq in zip(amps, freqs):
+        signals.append(amp * np.sin(2 * np.pi * freq * x))
+    return sum(signals)
+
+
 def plot_3d(x: np.ndarray, y: np.ndarray, values: np.ndarray, labels: list = None) -> plt:
     """
     plot expected and result value over 2 axis
