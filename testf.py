@@ -22,10 +22,11 @@ plt.show()
 J'ai trouvé ca sur stack overflow ya aussi une doc pour scipy.fttpack : https://docs.scipy.org/doc/scipy/reference/tutorial/fftpack.html
 Du coup sur le code qu'on avait ca nous donne ca :
 """
+
 n = 600
 X = np.linspace(0, 10 * np.pi, n)
 y = []
-t = 1.0 / 800.0
+t = 1.0 / 800000
 A = [5, 2, 1 / 2, 1]
 F = [1, 2, 4, 10]
 
@@ -51,7 +52,7 @@ ax.plot(X, Y)
 fig.show()
 
 yf2 = scipy.fftpack.fft(Y)
-xf2 = np.linspace(0.0, 1.0 / (2.0 * t), int(n/2))
+xf2 = np.linspace(0.0, 1.0 / t, int(n/2))
 
 fig, ax = plt.subplots()
 ax.plot(xf2, 2.0 / n * np.abs(yf2[:n // 2]), "+k")
