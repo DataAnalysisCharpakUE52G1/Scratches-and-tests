@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.fftpack
+
 """
 
 # Number of samplepoints
@@ -24,15 +25,14 @@ Du coup sur le code qu'on avait ca nous donne ca :
 n = 600
 X = np.linspace(0, 10 * np.pi, n)
 y = []
-t = 1.0/800.0
-A = [5, 2, 1/2, 1]
+t = 1.0 / 800.0
+A = [5, 2, 1 / 2, 1]
 F = [1, 2, 4, 10]
 
 for a, f in zip(A, F):
-    y.append(a*np.sin(2*np.pi*f*X))
+    y.append(a * np.sin(2 * np.pi * f * X))
 
 Y = sum(y)
-
 
 fig: plt.Figure
 fig, axs = plt.subplots(len(y))
@@ -42,7 +42,6 @@ for i, _y in enumerate(y):
 
 fig.show()
 
-
 fig: plt.Figure
 ax: plt.Axes
 fig, ax = plt.subplots()
@@ -51,11 +50,9 @@ ax.plot(X, Y)
 
 fig.show()
 
-
-
 yf2 = scipy.fftpack.fft(Y)
-xf2 = np.linspace(0.0, 1.0/(2.0*t), n/2)
+xf2 = np.linspace(0.0, 1.0 / (2.0 * t), int(n/2))
 
 fig, ax = plt.subplots()
-ax.plot(xf2, 2.0/n * np.abs(yf2[:n//2]))
+ax.plot(xf2, 2.0 / n * np.abs(yf2[:n // 2]), "+k")
 plt.show()
