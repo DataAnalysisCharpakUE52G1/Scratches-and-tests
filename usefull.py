@@ -11,6 +11,9 @@ from mpl_toolkits.mplot3d import Axes3D
 import json
 
 
+fourier_constant: float = 8.753362589041188
+
+
 def get_json(link: str) -> dict:
     return json.load(open(link, "r"))
 
@@ -80,6 +83,10 @@ def generate_signal(x: np.ndarray, amps: list, freqs: list):
     for amp, freq in zip(amps, freqs):
         signals.append(amp * np.sin(2 * np.pi * freq * x))
     return sum(signals)
+
+
+def r_squared(_y: np.ndarray, _y_fitted):
+    return 1 - np.sum(np.square(_y-_y_fitted))/_y.var()
 
 
 def plot_3d(x: np.ndarray, y: np.ndarray, values: np.ndarray, labels: list = None) -> plt:
