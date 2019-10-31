@@ -3,14 +3,15 @@ import matplotlib.pyplot as plt
 from scratches.usefull import generate_signal, r_squared as r2
 from scipy.integrate import trapz as integ
 
-ech = 50
+ech = 5000
 end = 5*np.pi
 x = np.linspace(0, end, ech)
 
 f_ins = [1]  #
 a_ins = [1]  #
-y = generate_signal(x, a_ins, f_ins)  # + np.random.normal(scale=0.005, size=len(x))
+# y = generate_signal(x, a_ins, f_ins)  # + np.random.normal(scale=0.005, size=len(x))
 # y = np.array([1 if np.sin(X) >= 0 else -1 for X in x]) + np.random.normal(scale=2, size=len(x))
+y = np.sin(np.pi*x+np.pi)
 
 yf: np.ndarray = abs(np.fft.rfft(y))
 
@@ -37,7 +38,7 @@ def extract_coefs(signal: np.ndarray, nb: int = 1, act: int = None, plot: bool =
         if mi < 0:
             mi = 0
         ma = int(signal.argmax() + act)
-        amps.append(integ(signal[mi:ma])/len(signal))
+        amps.append(max(signal)/len(signal))
         signal[mi:ma] = np.zeros(ma - mi)
         if plot:
             ax.plot(signal[:graph_len])
