@@ -1,6 +1,8 @@
 import numpy as np
 from scratches.usefull import plot_multiples
 from scratches.fourier.fourier_n_gaussian_noise import extract_coefs
+from matplotlib import pyplot as plt
+
 
 ech = 5000
 end = 5 * np.pi
@@ -18,4 +20,10 @@ def test_amp(freq: float):
 
 freqs = np.linspace(np.pi, 2 * np.pi, 10000)
 res = np.array([test_amp(f) for f in freqs])
-plot_multiples(freqs, [res])
+
+fig: plt.Figure
+ax: plt.Axes
+fig, ax = plot_multiples(freqs, [res])
+ax.set_xlabel("Frequences")
+ax.set_ylabel("Amplitude")
+fig.show()

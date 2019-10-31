@@ -136,12 +136,20 @@ def plot_heat_map(
     return fig
 
 
-def plot_multiples(_x, _ys, nb_points: int = None):
+def plot_multiples(_x, _ys, _ylabels: list = None, nb_points: int = None):
     if nb_points is None:
         nb_points = len(_x)
+    if _ylabels is not None:
+        if len(_ylabels) != len(_ys):
+            _ylabels = None
     fig, ax = plt.subplots()
 
-    for _y in _ys:
-        ax.plot(_x[:nb_points], _y[:nb_points])
+    if _ylabels is None:
+        for _y in _ys:
+            ax.plot(_x[:nb_points], _y[:nb_points])
+    else:
+        for _y, _l in zip(_ys, _ylabels):
+            ax.plot(_x[:nb_points], _y[:nb_points], label=_l)
+        ax.legend()
 
-    fig.show()
+    return fig, ax
