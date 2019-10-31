@@ -11,9 +11,6 @@ from mpl_toolkits.mplot3d import Axes3D
 import json
 
 
-fourier_constant: float = 8.753362589041188
-
-
 def get_json(link: str) -> dict:
     return json.load(open(link, "r"))
 
@@ -86,10 +83,12 @@ def generate_signal(x: np.ndarray, amps: list, freqs: list):
 
 
 def r_squared(_y: np.ndarray, _y_fitted):
-    return 1 - np.sum(np.square(_y-_y_fitted))/_y.var()
+    return 1 - np.sum(np.square(_y - _y_fitted)) / _y.var()
 
 
-def plot_3d(x: np.ndarray, y: np.ndarray, values: np.ndarray, labels: list = None) -> plt:
+def plot_3d(
+    x: np.ndarray, y: np.ndarray, values: np.ndarray, labels: list = None
+) -> plt:
     """
     plot expected and result value over 2 axis
     :param x: x array
@@ -135,3 +134,14 @@ def plot_heat_map(
         ax.set_xticklabels([x[i] for i in ticks_pos_x])
         ax.set_yticklabels([y[i] for i in ticks_pos_y])
     return fig
+
+
+def plot_multiples(_x, _ys, nb_points: int = None):
+    if nb_points is None:
+        nb_points = len(_x)
+    fig, ax = plt.subplots()
+
+    for _y in _ys:
+        ax.plot(_x[:nb_points], _y[:nb_points])
+
+    fig.show()

@@ -26,8 +26,9 @@ def dif(_x, _ys, np_points: int = 1000):
 
 
 def extract_coefs(signal: np.ndarray, nb: int = 1, act: int = None, plot: bool = True, graph_len: int = 200):
-    fig, ax = plt.subplots()
-    ax.plot(signal[:graph_len])
+    if plot:
+        fig, ax = plt.subplots()
+        ax.plot(signal[:graph_len])
     if act is None:
         act = int(np.pi)
     freqs: list = []
@@ -47,11 +48,12 @@ def extract_coefs(signal: np.ndarray, nb: int = 1, act: int = None, plot: bool =
     return amps, freqs
 
 
-a_out, f_out = extract_coefs(yf, 1, plot=True)
+if __name__ == '__main__':
+    a_out, f_out = extract_coefs(yf, 1, plot=True)
 
-y2 = generate_signal(x, a_out, f_out)
+    y2 = generate_signal(x, a_out, f_out)
 
-dif(x, (y, y2), int(len(x)*2/end))
-print(a_out)
-print(r2(y, y2))
+    dif(x, (y, y2), int(len(x)*2/end))
+    print(a_out)
+    print(r2(y, y2))
 
