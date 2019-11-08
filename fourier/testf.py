@@ -52,8 +52,8 @@ ax.plot(X, Y)
 fig.show()
 
 yf2 = scipy.fftpack.fft(Y)
-xf2 = np.linspace(0.0, 1.0 / t, int(n/2))
+xf2 = np.linspace(0.0, 1.0 / t, int(n / 2))
 
 fig, ax = plt.subplots()
-ax.plot(xf2, 2.0 / n * np.abs(yf2[:n // 2]), "+k")
+ax.plot(xf2, 2.0 / n * np.abs(yf2[: n // 2]), "+k")
 plt.show()

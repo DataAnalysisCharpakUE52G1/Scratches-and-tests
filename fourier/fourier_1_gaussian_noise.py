@@ -8,22 +8,22 @@ import matplotlib.pyplot as plt
 from scratches.usefull import generate_signal
 
 
-x = np.linspace(0, 10*np.pi, 1000)
-y = generate_signal(x, [1], [2/np.pi]) + np.random.normal(scale=0.5, size=len(x))
+x = np.linspace(0, 10 * np.pi, 1000)
+y = generate_signal(x, [1], [2 / np.pi]) + np.random.normal(scale=0.5, size=len(x))
 yf = abs(np.fft.rfft(y))
 
 
 fig, ax = plt.subplots()
 
-ax.plot(yf, '+k', label="fourier")
+ax.plot(yf, "+k", label="fourier")
 
 fig.legend()
 fig.show()
 
 
-f = yf.argmax()/10
+f = yf.argmax() / 10
 print(f, max(yf))
-y2 = np.sin(2*f*x)
+y2 = np.sin(2 * f * x)
 
 
 fig, ax = plt.subplots()

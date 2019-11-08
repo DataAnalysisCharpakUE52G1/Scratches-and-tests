@@ -6,12 +6,19 @@ from scipy import stats
 
 
 ech = 100000
-end = 5*np.pi
+end = 5 * np.pi
 x = np.linspace(0, end, ech)
 f_ins = [1]
 
 
-def extract_coefs(_x: np.ndarray, signal: np.ndarray, nb: int = 1, act: int = None, plot: bool = True, graph_len: int = 200):
+def extract_coefs(
+    _x: np.ndarray,
+    signal: np.ndarray,
+    nb: int = 1,
+    act: int = None,
+    plot: bool = True,
+    graph_len: int = 200,
+):
     if plot:
         fig, ax = plt.subplots()
         ax.plot(signal[:graph_len], "+")
@@ -20,7 +27,7 @@ def extract_coefs(_x: np.ndarray, signal: np.ndarray, nb: int = 1, act: int = No
     freqs: list = []
     amps: list = []
     for n in range(nb):
-        freqs.append(signal.argmax()/end)
+        freqs.append(signal.argmax() / end)
         mi = int(signal.argmax() - act)
         if mi < 0:
             mi = 0
@@ -35,12 +42,12 @@ def extract_coefs(_x: np.ndarray, signal: np.ndarray, nb: int = 1, act: int = No
 
 
 prec = 1000
-val = np.zeros((prec-1, prec-1))
+val = np.zeros((prec - 1, prec - 1))
 ams = np.linspace(0, 20, prec)[1:]
 frs = np.linspace(0, 20, prec)[1:]
 
-for i in range(prec-1):
-    for j in range(prec-1):
+for i in range(prec - 1):
+    for j in range(prec - 1):
         y = generate_signal(x, [ams[i]], [frs[j]])
         yf: np.ndarray = abs(np.fft.rfft(y))
         a_out, f_out = extract_coefs(x, yf, 1, plot=False)

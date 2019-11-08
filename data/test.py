@@ -23,7 +23,7 @@ graph = sns.JointGrid(x, x)
 
 for y in ys[:2, :]:
     graph.y = y
-    graph.plot_joint(plt.scatter, marker='+')
+    graph.plot_joint(plt.scatter, marker="+")
     graph.plot_marginals(sns.kdeplot, shade=True)
 
 plt.show()
