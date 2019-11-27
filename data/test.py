@@ -12,7 +12,7 @@ sns.set(style="white")
 
 head = get_json("exo/head.json")
 data = pd.read_csv("exo/data1.csv")
-
+print(data)
 ys: np.ndarray = data.values[:, 1:]
 x: np.ndarray = np.arange(len(ys[0]))
 
