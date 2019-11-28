@@ -1,11 +1,8 @@
 import numpy as np
-import seaborn as sns
 import pandas as pd
-from scipy import stats
 import scipy.cluster.hierarchy as hac
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import fcluster
-import typing
 
 
 class Cluster:
