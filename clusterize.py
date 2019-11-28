@@ -21,17 +21,23 @@ class Cluster:
         hac.dendrogram(self.clust, leaf_rotation=90.0, leaf_font_size=8)
         plt.show()
 
-    def print_clusters(self, n, plot=False):
+    def print(self, n: int):
+        """
+        Print the n clusters
+        :param n: number of clusters
+        """
+        for i, clust in enumerate(self.get(n)):
+            print(f"Cluster {i}: {clust}")
+
+    def get(self, n: int) -> np.array:
+        """
+        Calculate the n clusters
+        :param n: number of clusters
+        :return clusts: list of clusters
+        """
         results = fcluster(self.clust, n, criterion="maxclust")
 
         s = pd.Series(results)
         clusters = s.unique()
-
-        for clust in clusters:  # TODO: reformat as print/plot
-            cluster_indeces = s[s == clust].index
-            print(
-                f"Cluster {clust}: {list(cluster_indeces)}"
-            )
-            if plot:
-                self.features.T.iloc[:, cluster_indeces].plot()
-                plt.show()
+        clusts = [s[s == clust].index for clust in clusters]
+        return clusts
